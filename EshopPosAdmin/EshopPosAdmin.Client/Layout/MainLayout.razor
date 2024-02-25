@@ -1,0 +1,74 @@
+﻿@inherits LayoutComponentBase
+
+@inject NavigationManager _navManager
+<MudThemeProvider Theme="MyTheme" />
+<MudSnackbarProvider />
+<MudDialogProvider FullWidth="true"
+                   MaxWidth="MaxWidth.ExtraSmall"
+                   CloseButton="true"
+                   DisableBackdropClick="true"
+                   NoHeader="true"
+                   Position="DialogPosition.Center"
+                   CloseOnEscapeKey="true" />
+<MudLayout>
+    <MudAppBar Elevation="1">
+        <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
+        <MudText Typo="Typo.h6" Class="ml-3">POS</MudText>
+        <MudSpacer />
+        <MudText Typo="Typo.h5">Hello , @Name</MudText>
+            <MudButton Class="ml-4 mr-4" OnClick="Logout" StartIcon="@Icons.Material.Filled.Logout" Color="Color.Secondary">Logout</MudButton>
+        </MudAppBar>
+        <MudDrawer @bind-Open="_drawerOpen" ClipMode="DrawerClipMode.Always" Elevation="2" Variant="DrawerVariant.Responsive">
+            <MudDrawerHeader>
+                <MudText Typo="Typo.h6">Services</MudText>
+            </MudDrawerHeader>
+            <NavMenu />
+        </MudDrawer>
+    <MudMainContent Style="min-height:100dvh;scrollbar-width: none;overflow-y:hidden; margin-bottom:0px;">
+            @Body
+    </MudMainContent>
+    <footer style="margin-bottom:0px;">
+        <MudContainer MaxWidth="MaxWidth.ExtraExtraLarge" Style="background-color:#7851a9;">
+       
+            <MudContainer  Class="mt-8 d-flex justify-center">
+                <MudText Style="color:white; font-size:1.2rem;">
+                    Copyright &copy; @DateTime.Today.Year  Ariyotech Solutions
+                </MudText>
+       </MudContainer>
+        </MudContainer>
+       
+    </footer>
+</MudLayout>
+
+@code {
+    bool _drawerOpen = false;
+    public string Name { get; set; } = string.Empty;
+    void DrawerToggle()
+    {
+        _drawerOpen = !_drawerOpen;
+    }
+    MudTheme MyTheme = new MudTheme()
+        {
+
+            Palette = new PaletteLight()
+            {
+                AppbarBackground = "#7851a9"
+            },
+        };
+    private void navHome()
+    {
+        _navManager.NavigateTo("/");
+    }
+
+    public void Logout()
+    {
+        // _authService.Logout();
+        _navManager.NavigateTo("/login");
+    }
+}
+
+<div id="blazor-error-ui">
+    An unhandled error has occurred.
+    <a href="" class="reload">Reload</a>
+    <a class="dismiss">🗙</a>
+</div>
