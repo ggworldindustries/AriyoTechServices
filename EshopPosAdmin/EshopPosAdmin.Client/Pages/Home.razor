@@ -10,8 +10,8 @@
                   HoverColor="@_hoverColor?.Value" ContainerHoverColor="@_containerHoverColor?.Value"/>
         <MudGrid >
             <MudItem  xs="12" sm="8">
-            <div class="ma-0  id1 " style="height:100dvh; overflow:auto;scrollbar-width:none;">
-                <MudGrid>
+            <div class="ma-0  id1 " style="height:100dvh; max-width:contain; width:contain; overflow:auto;scrollbar-width:none;">
+                <MudGrid Style="max-width:contain; width:contain;">
                     <MudItem xs="12" sm="12" md="12" lg="12" xxl="12" xl="12" Class="d-flex justify-space-between gap-16">
                 <MudText  Color="Color.Surface" Style="font-weight:600; font-size:1.5rem;">
                     Choose Category
@@ -19,7 +19,7 @@
                         <MudTextField Style="border-radius:8px;" Class="flex-1 d-flex " @bind-Value="Search" Label="Search" Variant="Variant.Filled" Adornment="Adornment.End" AdornmentIcon="@Icons.Material.Filled.Search" AdornmentColor="Color.Secondary" />
                     </MudItem>
                     <MudItem Class="d-flex justify-start"  xs="12" sm="12" md="12" lg="12" xxl="12" xl="12">
-                        <MudLink Style="cursor:pointer;">   All Categories</MudLink>
+                        <MudText Style="cursor:pointer;"> All Categories</MudText>
                     </MudItem>
                     <MudItem xs="12" sm="12" md="12" lg="12" xxl="12" xl="12" >
                        <MudGrid Spacing="1" Justify="Justify.SpaceEvenly">
