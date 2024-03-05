@@ -1,4 +1,5 @@
-﻿@inherits LayoutComponentBase
+﻿@using Microsoft.AspNetCore.Http
+@inherits LayoutComponentBase
 
 @inject NavigationManager _navManager
 <MudThemeProvider @ref="_mudThemeProvider" Theme="MyTheme" @bind-IsDarkMode="@_isDark" />
@@ -54,8 +55,9 @@
     bool _drawerOpen = false;
     bool _isDark = false;
     public string Name { get; set; } = string.Empty;
+    public AppData appData = new();
     private MudThemeProvider _mudThemeProvider;
-
+    private HttpContext HttpContext { get; set; } = default!;
     void DrawerToggle()
     {
         _drawerOpen = !_drawerOpen;
@@ -68,14 +70,14 @@
                 AppbarBackground = "#6C3082",
                 Primary = "#6C3082",
                 TextPrimary = "#6C3082",
-             
-                
-               
+
+
+
             },
             PaletteDark =  new PaletteDark()
             {
                 Primary = "#410056",
-             
+
             }
         };
     private void navHome()
@@ -88,16 +90,40 @@
         // _authService.Logout();
         _navManager.NavigateTo("/login");
     }
+    protected override async  Task OnInitializedAsync()
+    {
+        
+        // _isDark = appData.Theme;
+    }
+
+
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (firstRender)
-        {
-            _isDark = await _mudThemeProvider.GetSystemPreference();
-            await _mudThemeProvider.WatchSystemPreference(OnSystemPreferenceChanged);
-            StateHasChanged();
-        }
+        // if (firstRender == true)
+        // {
+        //     try
+        //     {
+        //         var themecookie = HttpContext.Request.Cookies["theme"];
+        //         if (string.IsNullOrWhiteSpace(themecookie))
+        //         {
+        //             _isDark = await _mudThemeProvider.GetSystemPreference();
+        //             appData.Theme = _isDark;
+        //             HttpContext.Response.Cookies.Append("theme", _isDark.ToString());
+        //             StateHasChanged();
+        //         }
+        //     }
+        //     catch
+        //     {
+        //         _isDark = await _mudThemeProvider.GetSystemPreference();
+        //         appData.Theme = _isDark;
+        //         HttpContext.Response.Cookies.Append("theme", _isDark.ToString());
+        //         StateHasChanged();
+        //     }
+           
+        // }
     }
+
     private Task OnSystemPreferenceChanged(bool newValue)
     {
         _isDark = newValue;

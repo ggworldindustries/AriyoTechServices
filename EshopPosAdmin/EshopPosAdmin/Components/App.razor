@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using EshopPosAdmin.Client.Layout
+@using EshopPosAdmin.Controllers
+@using MudBlazor
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -14,10 +17,52 @@
 </head>
 
 <body>
-    <Routes @rendermode="InteractiveAuto" />
+
+    <Routes @rendermode="InteractiveAuto"  />
     <script src="_framework/blazor.web.js"></script>
     <script src="_content/MudBlazor/MudBlazor.min.js"></script>
 
 </body>
 
 </html>
+@code{
+    [CascadingParameter]
+    private HttpContext HttpContext { get; set; } = default!;
+    public AppData appData = new();
+    bool _isDark = false;
+    public string Name { get; set; } = string.Empty;
+    private MudThemeProvider _mudThemeProvider = new MudThemeProvider();
+    
+    @inject HttpClient _httpClient
+    @inject NavigationManager _navManger;
+    protected override async Task OnInitializedAsync()
+    {
+        var rrurl = _navManger.Uri;
+        var myTheme = await _httpClient.GetFromJsonAsync<bool>($"{rrurl}GetTheme");
+        _isDark = myTheme;
+        appData.Theme = _isDark;
+        StateHasChanged();
+    }
+
+    public async Task CustomTheme()
+    {
+        var themecookie = HttpContext.Request.Cookies["theme"];
+        if (!string.IsNullOrWhiteSpace(themecookie))
+        {
+            if (themecookie == "true")
+            {
+                _isDark = true;
+                appData.Theme = _isDark;
+            }
+            else
+            {
+                _isDark = false;
+                appData.Theme = _isDark;
+            }
+        }
+
+    }
+  
+  
+
+}

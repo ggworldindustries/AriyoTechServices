@@ -1,3 +1,4 @@
+using EshopPosAdmin.Client.Layout;
 using EshopPosAdmin.Client.Pages;
 using EshopPosAdmin.Components;
 using MudBlazor.Services;
@@ -10,6 +11,8 @@ builder.Services.AddRazorComponents()
     .AddInteractiveWebAssemblyComponents();
 
 builder.Services.AddMudServices();
+builder.Services.AddHttpClient();
+builder.Services.AddControllers();
 
 var app = builder.Build();
 
@@ -35,4 +38,5 @@ app.MapRazorComponents<App>()
     .AddInteractiveWebAssemblyRenderMode()
     .AddAdditionalAssemblies(typeof(EshopPosAdmin.Client._Imports).Assembly);
 
+app.MapControllers();
 app.Run();
