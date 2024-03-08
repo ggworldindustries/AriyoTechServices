@@ -1,0 +1,142 @@
+﻿@using EshopPosAdmin.Client.Layout
+@using Microsoft.AspNetCore.Http
+@using MudBlazor
+@inherits LayoutComponentBase
+
+@inject NavigationManager _navManager
+<MudThemeProvider @ref="_mudThemeProvider" Theme="MyTheme" @bind-IsDarkMode="@_isDark" />
+<MudSnackbarProvider />
+<MudDialogProvider FullWidth="true"
+                   MaxWidth="MaxWidth.ExtraSmall"
+                   CloseButton="true"
+                   DisableBackdropClick="true"
+                   NoHeader="true"
+                   Position="DialogPosition.Center"
+                   CloseOnEscapeKey="true" />
+<MudLayout>
+    <MudAppBar Elevation="1">
+        <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
+        <MudText Typo="Typo.h6" Class="ml-3">POS</MudText>
+        <MudSpacer />
+        <MudText Typo="Typo.h5">Hello , @Name</MudText>
+            <MudButton Class="ml-4 mr-4" OnClick="Logout" StartIcon="@Icons.Material.Filled.Logout" Color="Color.Secondary">Logout</MudButton>
+
+        @if (_isDark)
+        {
+            <MudButton Class="ml-4 mr-4" OnClick="Logout" StartIcon="@Icons.Material.Filled.DarkMode" Color="Color.Secondary">Logout</MudButton>
+        }
+        else
+        {
+            <MudButton Class="ml-4 mr-4" OnClick="Logout" StartIcon="@Icons.Material.Filled.LightMode" Color="Color.Secondary">Logout</MudButton>
+        }
+        
+        </MudAppBar>
+        <MudDrawer @bind-Open="_drawerOpen" ClipMode="DrawerClipMode.Always" Elevation="2" Variant="DrawerVariant.Responsive">
+            <MudDrawerHeader>
+                <MudText Typo="Typo.h6">Services</MudText>
+            </MudDrawerHeader>
+            <NavMenu />
+        </MudDrawer>
+    <MudMainContent Style="min-height:100dvh;scrollbar-width: none;overflow-y:hidden; margin-bottom:0px;">
+            @Body
+    </MudMainContent>
+    <footer style="margin-bottom:0px;">
+        <MudPaper MaxWidth="MaxWidth.ExtraExtraLarge" Class="mud-theme-primary">
+       
+            <MudContainer  Class="mt-8 d-flex justify-center">
+                <MudText Style="color:white; font-size:1.2rem;">
+                    Copyright &copy; @DateTime.Today.Year  Ariyotech Solutions
+                </MudText>
+       </MudContainer>
+        </MudPaper>
+       
+    </footer>
+</MudLayout>
+
+@code {
+    bool _drawerOpen = false;
+    bool _isDark = false;
+    public string Name { get; set; } = string.Empty;
+    public AppData appData = new();
+    private MudThemeProvider _mudThemeProvider;
+    private HttpContext HttpContext { get; set; } = default!;
+    void DrawerToggle()
+    {
+        _drawerOpen = !_drawerOpen;
+    }
+    MudTheme MyTheme = new MudTheme()
+        {
+
+            Palette = new PaletteLight()
+            {
+                AppbarBackground = "#6C3082",
+                Primary = "#6C3082",
+                TextPrimary = "#6C3082",
+
+
+
+            },
+            PaletteDark =  new PaletteDark()
+            {
+                Primary = "#410056",
+
+            }
+        };
+    private void navHome()
+    {
+        _navManager.NavigateTo("/");
+    }
+
+    public void Logout()
+    {
+        // _authService.Logout();
+        _navManager.NavigateTo("/login");
+    }
+    protected override async  Task OnInitializedAsync()
+    {
+        
+        // _isDark = appData.Theme;
+    }
+
+
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        // if (firstRender == true)
+        // {
+        //     try
+        //     {
+        //         var themecookie = HttpContext.Request.Cookies["theme"];
+        //         if (string.IsNullOrWhiteSpace(themecookie))
+        //         {
+        //             _isDark = await _mudThemeProvider.GetSystemPreference();
+        //             appData.Theme = _isDark;
+        //             HttpContext.Response.Cookies.Append("theme", _isDark.ToString());
+        //             StateHasChanged();
+        //         }
+        //     }
+        //     catch
+        //     {
+        //         _isDark = await _mudThemeProvider.GetSystemPreference();
+        //         appData.Theme = _isDark;
+        //         HttpContext.Response.Cookies.Append("theme", _isDark.ToString());
+        //         StateHasChanged();
+        //     }
+           
+        // }
+    }
+
+    private Task OnSystemPreferenceChanged(bool newValue)
+    {
+        _isDark = newValue;
+        StateHasChanged();
+        return Task.CompletedTask;
+    }
+
+}
+
+<div id="blazor-error-ui">
+    An unhandled error has occurred.
+    <a href="" class="reload">Reload</a>
+    <a class="dismiss">🗙</a>
+</div>

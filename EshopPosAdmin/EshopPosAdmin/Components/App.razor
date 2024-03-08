@@ -37,7 +37,7 @@
     @inject NavigationManager _navManger;
     protected override async Task OnInitializedAsync()
     {
-        var rrurl = _navManger.Uri;
+        var rrurl = _navManger.BaseUri;
         var myTheme = await _httpClient.GetFromJsonAsync<bool>($"{rrurl}GetTheme");
         _isDark = myTheme;
         appData.Theme = _isDark;

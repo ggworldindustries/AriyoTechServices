@@ -39,4 +39,5 @@ app.MapRazorComponents<App>()
     .AddAdditionalAssemblies(typeof(EshopPosAdmin.Client._Imports).Assembly);
 
 app.MapControllers();
+
 app.Run();
