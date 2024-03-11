@@ -1,6 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Http
 @inherits LayoutComponentBase
-
+@inject HttpClient _httpClient
 @inject NavigationManager _navManager
 <MudThemeProvider @ref="_mudThemeProvider" Theme="MyTheme" @bind-IsDarkMode="@_isDark" />
 <MudSnackbarProvider />
@@ -21,11 +21,11 @@
 
         @if (_isDark)
         {
-            <MudButton Class="ml-4 mr-4" OnClick="Logout" StartIcon="@Icons.Material.Filled.DarkMode" Color="Color.Secondary">Logout</MudButton>
+            <MudButton Class="ml-4 mr-4" OnClick="ThemeChange" StartIcon="@Icons.Material.Filled.DarkMode" Color="Color.Secondary">Logout</MudButton>
         }
         else
         {
-            <MudButton Class="ml-4 mr-4" OnClick="Logout" StartIcon="@Icons.Material.Filled.LightMode" Color="Color.Secondary">Logout</MudButton>
+            <MudButton Class="ml-4 mr-4" OnClick="ThemeChange" StartIcon="@Icons.Material.Filled.LightMode" Color="Color.Secondary">Logout</MudButton>
         }
         
         </MudAppBar>
@@ -92,36 +92,18 @@
     }
     protected override async  Task OnInitializedAsync()
     {
-        
-        // _isDark = appData.Theme;
+        var rrurl = _navManager.BaseUri;
+        var myTheme = await _httpClient.GetFromJsonAsync<bool>($"{rrurl}GetTheme");
+        _isDark = myTheme;
+        appData.Theme = _isDark;
+        StateHasChanged();
     }
 
 
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        // if (firstRender == true)
-        // {
-        //     try
-        //     {
-        //         var themecookie = HttpContext.Request.Cookies["theme"];
-        //         if (string.IsNullOrWhiteSpace(themecookie))
-        //         {
-        //             _isDark = await _mudThemeProvider.GetSystemPreference();
-        //             appData.Theme = _isDark;
-        //             HttpContext.Response.Cookies.Append("theme", _isDark.ToString());
-        //             StateHasChanged();
-        //         }
-        //     }
-        //     catch
-        //     {
-        //         _isDark = await _mudThemeProvider.GetSystemPreference();
-        //         appData.Theme = _isDark;
-        //         HttpContext.Response.Cookies.Append("theme", _isDark.ToString());
-        //         StateHasChanged();
-        //     }
-           
-        // }
+       
     }
 
     private Task OnSystemPreferenceChanged(bool newValue)
@@ -129,6 +111,14 @@
         _isDark = newValue;
         StateHasChanged();
         return Task.CompletedTask;
+    }
+    public async Task ThemeChange()
+    {
+        _isDark = _isDark == true ? false : true;
+        StateHasChanged();
+        var rrurl = _navManager.BaseUri;
+        var myTheme = await _httpClient.GetAsync($"{rrurl}CreateThemeCookie?cookievalue={_isDark.ToString()}");
+
     }
 
 }

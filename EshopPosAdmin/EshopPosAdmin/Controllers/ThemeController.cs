@@ -18,7 +18,8 @@ namespace EshopPosAdmin.Controllers
                 SameSite = SameSiteMode.Strict,
             };
             Response.Cookies.Append("theme", cookievalue, cp);
-            return Ok();
+            var res = Request.Cookies["theme"];
+            return Ok(res);
         }
 
         [HttpGet]
