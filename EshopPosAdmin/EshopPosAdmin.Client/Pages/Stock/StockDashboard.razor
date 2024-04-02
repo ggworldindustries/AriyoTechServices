@@ -1,54 +1,214 @@
 ﻿@page "/StockDashboard"
+
 <PageTitle>StockDashboard</PageTitle>
 
-<MudContainer MaxWidth="MaxWidth.ExtraExtraLarge">
+<MudContainer MaxWidth="MaxWidth.ExtraExtraLarge" Class="mt-14">
     <MudGrid Spacing="2">
         <MudItem xs="12" sm="4" md="4" lg="4" xl="4" xxl="4" Style="height:30dvh">
-            <MudStack Row = "true" Justify="Justify.SpaceBetween" Spacing="1" >
+            <MudCard>
+            <MudStack  Row = "true" Justify="Justify.SpaceBetween" Spacing="1" >
                 <MudStack>
                     <MudText>Congratulations Element X </MudText>
                     <MudText>Best Seller of the month </MudText>
-                    <MudText Class="mt-4">Kes 48K </MudText>
+                    <MudText Class="mt-6">Kes 48K </MudText>
                     <MudText>78% of target </MudText>
-                    <MudButton Variant="Variant.Filled" Color="Color.Primary" Class="mt-4">View Sales </MudButton>
+                    <MudButton Variant="Variant.Filled" Color="Color.Primary" Class="mt-8">View Sales </MudButton>
                 </MudStack>
-                <MudStack Justify="Justify.Center">
-                    <MudIcon Style="font-size:60%" Icon="fa-solid fa-medal"></MudIcon>
+                <MudStack Justify="Justify.Center" AlignItems="AlignItems.Center">
+                    <MudIcon Size="Size.Large" Icon="@Icons.Material.Filled.GifBox"></MudIcon>
                  
                 </MudStack>
             </MudStack>
-
+            </MudCard>
         </MudItem>
         <MudItem xs="12" sm="8" md="8" lg="8" xl="8" xxl="8" Style="height:30dvh">
           
-                    <MudSplitter @ref="_splitter"
-                                 @bind-Dimension="@_percentage"
-                              
-                                 EnableMargin="true" 
-                                  Color="Color.Primary" Bordered="false">
-                        <StartContent>
-                            <MudStack Row="true" Justify="Justify.SpaceBetween">
-                                <MudText>New Visitors</MudText>
-                                <MudText>Last week</MudText>
-                            </MudStack>
-                    <MudStack>23%</MudStack>
-                    <MudStack Row="true">
+                            <MudCard>
+                  
+                            <MudStack Row=true Justify="Justify.SpaceBetween">
+                                <MudStack>
+                                    <MudText>New Visitors</MudText>
+                                    <MudText Class="mt-6">23%</MudText>
+                                    <MudIcon Size="Size.Large" Icon="@Icons.Material.Filled.TrendingDown"></MudIcon>
+                                </MudStack>
+                               
+                                
+                                
+                                <MudStack>
+                                    <MudText>Last week</MudText>
+                                     <ApexCharts.ApexChart TItem="Order">
+
+        <ApexCharts.ApexPointSeries TItem="Order"
+                         Items="Orders"
+                         Name="Gross Value"
+                         XValue="@(e => e.Country)"
+                         YAggregate="@(e => e.Sum(e => e.GrossValue))"
+                         OrderByDescending="e=>e.Y"
+                         SeriesType="ApexCharts.SeriesType.Bar"
+                         Color="#005ba3"
+                         PointColor="e=> GetColor(e)" />
+    </ApexCharts.ApexChart>
+                                </MudStack>
+
+                    <MudStack>
+                        <MudText>New Visitors</MudText>
+                        <MudText Class="mt-6">23%</MudText>
                         <MudIcon Size="Size.Large" Icon="@Icons.Material.Filled.TrendingDown"></MudIcon>
                     </MudStack>
-                        </StartContent>
 
-                        <EndContent>
-                        
-                        
-                        
-                        
-                        
-                        
-                        </EndContent>
-                    </MudSplitter>
+
+
+                    <MudStack>
+                        <MudText>Last week</MudText>
+                        <ApexCharts.ApexChart TItem="Order">
+
+                            <ApexCharts.ApexPointSeries TItem="Order"
+                                                        Items="Orders"
+                                                        Name="Gross Value"
+                                                        XValue="@(e => e.Country)"
+                                                        YAggregate="@(e => e.Sum(e => e.GrossValue))"
+                                                        OrderByDescending="e=>e.Y"
+                                                        SeriesType="ApexCharts.SeriesType.Line"
+                                                        Color="#005ba3"
+                                                        PointColor="e=> GetColor(e)" />
+                        </ApexCharts.ApexChart>
+                    </MudStack>
+
+                            </MudStack>
+                    </MudCard>
+
                    
             
         </MudItem>
+
+      @* second layers *@
+        <MudItem Class="mt-8" xs="12" sm="12" md="4" lg="4" xl="4" xxl="4" >
+            <MudGrid Spacing="2">
+                <MudItem xs="6" sm="3" md="6" lg="6" xl="6" xxl="6">
+                    <MudCard>
+                        <MudStack Row="true" Justify="Justify.SpaceBetween" Spacing="1">
+                            <MudStack>
+                                <MudText>Congratulations Element X </MudText>
+                                <MudText>Best Seller of the month </MudText>
+                                <MudText Class="mt-6">Kes 48K </MudText>
+                                <MudText>78% of target </MudText>
+                                <MudButton Variant="Variant.Filled" Color="Color.Primary" Class="mt-8">View Sales </MudButton>
+                            </MudStack>
+                            <MudStack Justify="Justify.Center" AlignItems="AlignItems.Center">
+                                <MudIcon Size="Size.Large" Icon="@Icons.Material.Filled.GifBox"></MudIcon>
+
+                            </MudStack>
+                        </MudStack>
+                    </MudCard>
+                </MudItem>
+                  <MudItem xs="6" sm="3" md="6" lg="6" xl="6" xxl="6">
+                    <MudCard>
+                        <MudStack Row="true" Justify="Justify.SpaceBetween" Spacing="1">
+                            <MudStack>
+                                <MudText>Congratulations Element X </MudText>
+                                <MudText>Best Seller of the month </MudText>
+                                <MudText Class="mt-6">Kes 48K </MudText>
+                                <MudText>78% of target </MudText>
+                                <MudButton Variant="Variant.Filled" Color="Color.Primary" Class="mt-8">View Sales </MudButton>
+                            </MudStack>
+                            <MudStack Justify="Justify.Center" AlignItems="AlignItems.Center">
+                                <MudIcon Size="Size.Large" Icon="@Icons.Material.Filled.GifBox"></MudIcon>
+
+                            </MudStack>
+                        </MudStack>
+                    </MudCard>
+                </MudItem>
+                <MudItem xs="6" sm="3" md="6" lg="6" xl="6" xxl="6">
+                    <MudCard>
+                        <MudStack Row="true" Justify="Justify.SpaceBetween" Spacing="1">
+                            <MudStack>
+                                <MudText>Congratulations Element X </MudText>
+                                <MudText>Best Seller of the month </MudText>
+                                <MudText Class="mt-6">Kes 48K </MudText>
+                                <MudText>78% of target </MudText>
+                                <MudButton Variant="Variant.Filled" Color="Color.Primary" Class="mt-8">View Sales </MudButton>
+                            </MudStack>
+                            <MudStack Justify="Justify.Center" AlignItems="AlignItems.Center">
+                                <MudIcon Size="Size.Large" Icon="@Icons.Material.Filled.GifBox"></MudIcon>
+
+                            </MudStack>
+                        </MudStack>
+                    </MudCard>
+                </MudItem>
+                <MudItem xs="6" sm="3" md="6" lg="6" xl="6" xxl="6">
+                    <MudCard>
+                        <MudStack Row="true" Justify="Justify.SpaceBetween" Spacing="1">
+                            <MudStack>
+                                <MudText>Congratulations Element X </MudText>
+                                <MudText>Best Seller of the month </MudText>
+                                <MudText Class="mt-6">Kes 48K </MudText>
+                                <MudText>78% of target </MudText>
+                                <MudButton Variant="Variant.Filled" Color="Color.Primary" Class="mt-8">View Sales </MudButton>
+                            </MudStack>
+                            <MudStack Justify="Justify.Center" AlignItems="AlignItems.Center">
+                                <MudIcon Size="Size.Large" Icon="@Icons.Material.Filled.GifBox"></MudIcon>
+
+                            </MudStack>
+                        </MudStack>
+                    </MudCard>
+                </MudItem>
+            </MudGrid>
+        </MudItem>
+        <MudItem Class="mt-8" xs="12" sm="12" md="8" lg="8" xl="8" xxl="8" Style="height:60dvh">
+
+            <MudCard>
+
+                <MudStack Row=true Justify="Justify.SpaceBetween">
+                    <MudStack>
+                        <MudText>New Visitors</MudText>
+                        <MudText Class="mt-6">23%</MudText>
+                        <MudIcon Size="Size.Large" Icon="@Icons.Material.Filled.TrendingDown"></MudIcon>
+                    </MudStack>
+
+
+
+                    <MudStack>
+                        <MudText>Last week</MudText>
+
+    <ApexCharts.ApexChart TItem="Order"
+               Title="Order Net Value">
+
+        <ApexCharts.ApexPointSeries TItem="Order"
+                         Items="Orders"
+                         Name="Gross Value"
+                         SeriesType="ApexCharts.SeriesType.Line"
+                         XValue="@(e => e.Country)"
+                         YAggregate="@(e => e.Sum(e => e.GrossValue))"
+                         OrderByDescending="e=>e.Y" />
+
+        <ApexCharts.ApexPointSeries TItem="Order"
+                         Items="Orders"
+                         Name="Net Value"
+                         SeriesType="ApexCharts.SeriesType.Line"
+                         XValue="@(e => e.Country)"
+                         YAggregate="@(e => e.Sum(e => e.GrossValue))"
+                         OrderByDescending="e=>e.Y" />
+    </ApexCharts.ApexChart>
+
+
+                    </MudStack>
+
+                    <MudStack>
+                       <MudList>
+                           <MudListItem></MudListItem>
+                           <MudListItem></MudListItem>
+                           <MudListItem></MudListItem>
+                       </MudList>
+                    </MudStack>
+
+                </MudStack>
+            </MudCard>
+
+
+
+        </MudItem>
+
+
      
     </MudGrid>
 </MudContainer>
@@ -56,4 +216,21 @@
 @code {
     MudSplitter _splitter;
     double _percentage = 50;
+
+    private List<Order> Orders { get; set; }
+
+    private string GetColor(Order order)
+    {
+        if (order.Country == "France")
+        {
+            return "#ffd500";
+        }
+        return null;
+    }
+
+    public class Order
+    {
+        public string Country { get; set; }
+        public int GrossValue { get; set; }
+    }
 }
