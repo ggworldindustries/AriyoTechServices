@@ -21,11 +21,11 @@
 
         @if (_isDark)
         {
-            <MudButton Class="ml-4 mr-4" OnClick="ThemeChange" StartIcon="@Icons.Material.Filled.DarkMode" Color="Color.Secondary">Logout</MudButton>
+            <MudIconButton Class="ml-4 mr-4" OnClick="ThemeChange" Icon="@Icons.Material.Filled.LightMode"  Color="Color.Secondary"></MudIconButton>
         }
         else
         {
-            <MudButton Class="ml-4 mr-4" OnClick="ThemeChange" StartIcon="@Icons.Material.Filled.LightMode" Color="Color.Secondary">Logout</MudButton>
+            <MudIconButton Class="ml-4 mr-4" OnClick="ThemeChange" Icon="@Icons.Material.Filled.DarkMode" Color="Color.Secondary"></MudIconButton>
         }
         
         </MudAppBar>
