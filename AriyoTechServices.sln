@@ -17,6 +17,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AriyotechEshop", "Ariyotech
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AriyotechEshop.Client", "AriyotechEshop\AriyotechEshop.Client\AriyotechEshop.Client.csproj", "{54D27B17-45C3-432F-BA7E-EB5EC34E0E39}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EshopAdminPos", "EshopAdminPos\EshopAdminPos\EshopAdminPos.csproj", "{EA20899E-331D-4038-88FC-5AD4AABBF57F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EshopAdminPos.Client", "EshopAdminPos\EshopAdminPos.Client\EshopAdminPos.Client.csproj", "{A7A49270-21A8-409E-97D9-91FFBDA4071C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{54D27B17-45C3-432F-BA7E-EB5EC34E0E39}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{54D27B17-45C3-432F-BA7E-EB5EC34E0E39}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{54D27B17-45C3-432F-BA7E-EB5EC34E0E39}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA20899E-331D-4038-88FC-5AD4AABBF57F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA20899E-331D-4038-88FC-5AD4AABBF57F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA20899E-331D-4038-88FC-5AD4AABBF57F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA20899E-331D-4038-88FC-5AD4AABBF57F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7A49270-21A8-409E-97D9-91FFBDA4071C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7A49270-21A8-409E-97D9-91FFBDA4071C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7A49270-21A8-409E-97D9-91FFBDA4071C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7A49270-21A8-409E-97D9-91FFBDA4071C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -48,6 +60,8 @@ Global
 		{CA11E8B8-5CD9-4C9D-AEFE-770831B03678} = {736C59EA-DF85-4EF6-98E5-4EDC70B850C3}
 		{5AC5A4E6-D986-42E3-A5F9-A03848D64069} = {E17E1328-1605-4F55-B82D-69E249269541}
 		{54D27B17-45C3-432F-BA7E-EB5EC34E0E39} = {E17E1328-1605-4F55-B82D-69E249269541}
+		{EA20899E-331D-4038-88FC-5AD4AABBF57F} = {736C59EA-DF85-4EF6-98E5-4EDC70B850C3}
+		{A7A49270-21A8-409E-97D9-91FFBDA4071C} = {736C59EA-DF85-4EF6-98E5-4EDC70B850C3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CBC31B63-24C0-4F81-9F96-25237FABB65F}
