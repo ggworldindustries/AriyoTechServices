@@ -1,7 +1,7 @@
-﻿@using Microsoft.AspNetCore.Http
-@inherits LayoutComponentBase
+﻿@inherits LayoutComponentBase
 @inject HttpClient _httpClient
 @inject NavigationManager _navManager
+
 <MudThemeProvider @ref="_mudThemeProvider" Theme="MyTheme" @bind-IsDarkMode="@_isDark" />
 <MudSnackbarProvider />
 <MudDialogProvider FullWidth="true"
@@ -57,7 +57,7 @@
     public string Name { get; set; } = string.Empty;
     public AppData appData = new();
     private MudThemeProvider _mudThemeProvider;
-    private HttpContext HttpContext { get; set; } = default!;
+   
     void DrawerToggle()
     {
         _drawerOpen = !_drawerOpen;
@@ -92,10 +92,7 @@
     }
     protected override async  Task OnInitializedAsync()
     {
-        var rrurl = _navManager.BaseUri;
-        var myTheme = await _httpClient.GetFromJsonAsync<bool>($"{rrurl}GetTheme");
-        _isDark = myTheme;
-        appData.Theme = _isDark;
+       
         StateHasChanged();
     }
 
