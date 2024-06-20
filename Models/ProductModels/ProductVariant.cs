@@ -26,9 +26,7 @@ namespace Models.ProductModels
         public int ItemWidth { get; set; }
         public int ItemHeight { get; set; }
         public int ItemWeight { get; set; }
-
         public int ItemQuantity { get; set; }
         public ProductStatus ProductVariantStatus { get; set; }
-
     }
 }
