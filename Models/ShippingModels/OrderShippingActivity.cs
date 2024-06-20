@@ -11,7 +11,8 @@ namespace Models.ShippingModels
         public int Id { get; set; }
         public string OrderId {  get; set; } = string.Empty;
         public ShippingActivity ShippingActivity { get; set; }
-        public DateTime ActivityDate { get; set; }
+        public DateOnly ActivityDate { get; set; }
+        public TimeOnly ActivityTimeOnly { get; set; }
         public string ShippingActivityDec { get; set; } = string.Empty; 
     }
 }
