@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Models.UserModels
+﻿namespace Models.UserModels
 {
-    public class ShippingAddress
+    public class UserAddress
     {
         public int Id { get; set; }
         public string UserId { get; set; } = string.Empty;
