@@ -298,7 +298,7 @@
 				var PostResult = await Http.PostAsJsonAsync("api/Authentications/create", SubmitUserViewModel.TrimStringAndCheckPersianSpecialLetter());
 				if (PostResult.IsSuccessStatusCode)
 				{
-					var JsonResult = await PostResult.Content.ReadFromJsonAsync<CallbackResult<ApplicationUser>>();
+					var JsonResult = await PostResult.Content.ReadFromJsonAsync<CallbackResult<AllIdentity>>();
 					if (JsonResult.Data != null)
 					{
 						Snackbar.Add(JsonResult.SuccessMessage ?? DashboardResource.MessageSavedSuccessfully, Severity.Success);
@@ -319,7 +319,7 @@
 				var PutResult = await Http.PutAsJsonAsync("api/Authentications/Edit", SubmitUserViewModel.TrimStringAndCheckPersianSpecialLetter());
 				if (PutResult.IsSuccessStatusCode)
 				{
-					var JsonResult = await PutResult.Content.ReadFromJsonAsync<CallbackResult<ApplicationUser>>();
+					var JsonResult = await PutResult.Content.ReadFromJsonAsync<CallbackResult<AllIdentity>>();
 					if (JsonResult.Data != null)
 					{
 						Snackbar.Add(JsonResult.SuccessMessage ?? DashboardResource.MessageSavedSuccessfully, Severity.Success);

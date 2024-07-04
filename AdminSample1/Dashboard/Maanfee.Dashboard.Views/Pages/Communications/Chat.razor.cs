@@ -172,12 +172,12 @@ namespace Maanfee.Dashboard.Views.Pages.Communications
                                 SendDate = message.SendDate,
                                 IdFromUser = message.IdFromUser,
                                 IdToUser = message.IdToUser,
-                                FromUser = new ApplicationUser()
+                                FromUser = new AllIdentity()
                                 {
                                     UserName = CurrentUserName,
                                     Name = CurrentName,
                                 },
-                                ToUser = new ApplicationUser()
+                                ToUser = new AllIdentity()
                                 {
                                     UserName = ContactUser.UserName,
                                     Name = ContactUser.Name,
@@ -195,12 +195,12 @@ namespace Maanfee.Dashboard.Views.Pages.Communications
                                 SendDate = message.SendDate,
                                 IdFromUser = message.IdFromUser,
                                 IdToUser = message.IdToUser,
-                                FromUser = new ApplicationUser()
+                                FromUser = new AllIdentity()
                                 {
                                     UserName = ContactUser.UserName,
                                     Name = ContactUser.Name,
                                 },
-                                ToUser = new ApplicationUser()
+                                ToUser = new AllIdentity()
                                 {
                                     UserName = ContactUser.UserName,
                                     Name = ContactUser.Name,

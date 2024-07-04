@@ -1,0 +1,68 @@
+﻿@inherits LayoutComponentBase
+@inject HttpClient _httpClient
+@inject NavigationManager _navManager
+
+<MudThemeProvider @ref="_mudThemeProvider" Theme="MyTheme" @bind-IsDarkMode="@_isDark" />
+<MudPopoverProvider />
+<MudDialogProvider />
+<MudSnackbarProvider />
+
+<MudLayout>
+    <MudAppBar Elevation="1">
+		<MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
+        <MudText Typo="Typo.h5" Class="ml-3">Application</MudText>
+        <MudSpacer />
+        <MudIconButton Icon="@Icons.Material.Filled.MoreVert" Color="Color.Inherit" Edge="Edge.End" />
+    </MudAppBar>
+    <MudDrawer @bind-Open="_drawerOpen" ClipMode="DrawerClipMode.Always" Elevation="2">
+        <NavMenu />
+    </MudDrawer>
+    <MudMainContent Class="mt-16 pa-4">
+        @Body
+    </MudMainContent>
+</MudLayout>
+
+@code {
+    bool _drawerOpen = false;
+    bool _isDark = false;
+    public string Name { get; set; } = string.Empty;
+    private MudThemeProvider _mudThemeProvider { get; set; } = new();
+
+    MudTheme MyTheme = new MudTheme()
+        {
+
+            PaletteLight = new PaletteLight()
+            {
+                AppbarBackground = "#6C3082",
+                Primary = "#6C3082",
+                TextPrimary = "#6C3082",
+
+
+
+            },
+            PaletteDark = new PaletteDark()
+            {
+                Primary = "#410056",
+
+            }
+        };
+
+    private void DrawerToggle()
+    {
+        _drawerOpen = !_drawerOpen;
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+    
+        StateHasChanged();
+    }
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            _isDark = await _mudThemeProvider.GetSystemPreference();
+            StateHasChanged();
+        }
+    }
+}

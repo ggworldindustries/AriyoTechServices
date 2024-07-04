@@ -46,7 +46,7 @@ namespace Maanfee.Dashboard.Views.Shared
                     }
 
                     var username = State.Name;
-                    var Callback = await Http.GetFromJsonAsync<CallbackResult<ApplicationUser>>($"/api/Users/GetUserByUserName/{username}");
+                    var Callback = await Http.GetFromJsonAsync<CallbackResult<AllIdentity>>($"/api/Users/GetUserByUserName/{username}");
 
                     if (Callback.Data != null)
                     {
