@@ -8,7 +8,6 @@ namespace Models.ProductModels
 {
     public class ProductVariant
     {
-        public int Id { get; set; }
         public string ProductVariantId { get; set; } = string.Empty;
         public string ProductId { get; set; } = string.Empty;
         public string ProductVariantName { get; set; } = string.Empty;

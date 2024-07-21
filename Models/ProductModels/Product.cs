@@ -6,7 +6,6 @@
         public string ProductId { get; set; } = string.Empty;
         public string ProductCategoryId { get; set; } = string.Empty;
         public int BarCode { get; set; }
-        public int NumberOfVariants { get; set; }
         public string ProductName { get; set; } = string.Empty;
         public string ProductSKU { get; set; } = string.Empty;
         public string ProductSlug { get; set; } = string.Empty; 
@@ -18,6 +17,7 @@
         public ProductStatus ProductStatus { get; set; }
         public  TaxCategory TaxCategory { get; set; }
         public ProductAttributes ProductAttributes { get; set; }
+        public List<ProductVariant>? ProductVariants { get; set; }
     }
 }
 public enum ProductStatus
