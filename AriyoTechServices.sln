@@ -29,9 +29,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AriyotechDTOModels", "Ariyo
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AriyotechWeb", "AriyotechWeb", "{DEF249F1-F06F-4C17-90E8-3359B2CAAD1B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AriyotechMainWeb", "AriyotechMainWeb\AriyotechMainWeb.csproj", "{E102E059-CB6F-45A6-ADED-9C340ED5E8B6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AriyotechMainWeb", "AriyotechMainWeb\AriyotechMainWeb.csproj", "{E102E059-CB6F-45A6-ADED-9C340ED5E8B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AriyotechMainApi", "AriyotechMainApi\AriyotechMainApi\AriyotechMainApi.csproj", "{B81B8CE7-BC86-4E5F-8EA1-68693C1911B0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AriyotechMainApi", "AriyotechMainApi\AriyotechMainApi\AriyotechMainApi.csproj", "{B81B8CE7-BC86-4E5F-8EA1-68693C1911B0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

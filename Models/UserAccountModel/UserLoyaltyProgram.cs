@@ -8,8 +8,7 @@ namespace Models.UserAccountModel
 {
     public class UserLoyaltyProgram
     {
-        public int Id { get; set; }
-        public int LoyaltyPoints { get; set; }
+       public int LoyaltyPoints { get; set; }
 
         public DateTime DateTimeEarned { get; set; } = DateTime.Now;
 

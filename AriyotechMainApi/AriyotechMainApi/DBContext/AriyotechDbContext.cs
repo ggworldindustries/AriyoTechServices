@@ -3,6 +3,7 @@
 using Microsoft.EntityFrameworkCore;
 using Models.OrderModels;
 using Models.ProductModels;
+using Models.UserAccountModel;
 
 namespace AriyotechMainApi.DBContext
 {
@@ -25,7 +26,10 @@ namespace AriyotechMainApi.DBContext
             modelBuilder.Entity<OrderModel>();
             modelBuilder.Entity<OrderDetails>();
 
-
+            // User Account models
+            modelBuilder.Entity<UserAccount>().OwnsOne(sh=>sh.UserLoyaltyProgram);
+            modelBuilder.Entity<UserAccountTransactions>();
+            modelBuilder.Entity<UserCoupons>();
         }
 
        

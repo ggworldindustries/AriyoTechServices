@@ -8,7 +8,6 @@ namespace Models.UserAccountModel
 {
     public class UserCoupons
     {
-        public int Id { get; set; }
         public string CouponName { get; set; } = string.Empty;
         public DateOnly DateIssued { get; set; }
         public TimeOnly TimeIssued { get; set; } 

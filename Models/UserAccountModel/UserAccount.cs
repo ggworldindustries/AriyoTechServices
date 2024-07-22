@@ -10,7 +10,8 @@ namespace Models.UserAccountModel
     {
         public int Id { get; set; }
         public string UserId { get; set; } =  string.Empty;
-        public int Currency { get; set; }
+        public string Currency { get; set; } = string.Empty;        
+        public List<UserLoyaltyProgram>? UserLoyaltyProgram { get; set; }
 
     }
 }
